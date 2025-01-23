@@ -29,41 +29,63 @@
             font-weight: bold;
           }
           
-          td[] {
+          td {
             background-color: #e0f7fa;
           }
+
+          #current-day {
+            text-align: center;  /* Centers the text horizontally */
+            font-size: 24px;     /* Increases the font size for better visibility */
+            font-weight: bold;   /* Makes the text bold */
+            margin-top: 20px;    /* Adds some space from the top */
+        }
+
+          h1 {
+            font-family: Arial, sans-serif;
+            font-size: 48px;
+          }
+          h1 {
+            font-size: 48px;
+            font-weight: bold;
+            color: #f5f0f0; /* Pure white text */
+            text-align: center;
+            text-transform: uppercase;
+            text-shadow: 0 0 15px #704a45, /* First layer glow */ 0 0 30px #704a45,
+              0 0 60px #6c4744, /* Second layer glow */ 0 0 90px #483131,
+              /* Third layer intense glow */ 0 0 10px #6c4744, 0 0 10px #704a45;
+          }
+
+          @media (max-width: 768px) {
+            h1 {
+              font-size: 36px;
+            }
+          }
+    
+          @media (max-width: 480px) {
+            h1 {
+              font-size: 28px;
+            }
+          }
+          
           
     </style>
 </head>
 <body style="background-color: gray">
+  <script>
+    function displayCurrentDay() {
+      const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+      const today = new Date().getDay();  // Get the current day index (0 = Sunday, 1 = Monday, etc.)
+  
+      document.getElementById("current-day").textContent = ` ${days[today]}`;
+  }
+  
+  // Call the function when the page loads
+  window.onload = displayCurrentDay;
+  </script>
     <a href="bca_year.html" ><button class="back">back</button></a><hr><br><br>
-    <!--<center><table border="5" style="color:aqua" >
-        <tr>
-            <th>Time</th>
-            <th>Subject</th>
-            <th>Teacher</th>
-        </tr>
-        <tr>
-            <td>9:10</td>
-            <td>bca1</td>
-            <td>Suri</td>
-        </tr>
-        <tr>
-            <td>10:11</td>
-            <td>AI</td>
-            <td>Nand</td>
-        </tr>
-        <tr>
-            <td>11.30:12.30</td>
-            <td>DA</td>
-            <td>Shore</td>
-        </tr>
-        <tr>
-            <td>12.30:1.30</td>
-            <td>DM</td>
-            <td>Vek</td>
-        </tr>
-    </table></center>-->
+    <h1 id="current-day"></h1>
+
+    
     <table>
         <thead>
           <tr>
