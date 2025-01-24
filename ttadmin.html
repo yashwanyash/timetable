@@ -202,6 +202,46 @@
       <div class="button-container">
         <button id="edit-button">Edit</button>
         <button id="save-button" disabled >Save</button>
+        
     </div>
+    <!-- Admin Section to View Suggestions -->
+<table>
+    <thead>
+        <tr>
+            <th>Suggestion</th>
+        </tr>
+    </thead>
+    <tbody id="suggestions-list">
+        <!-- Suggestions will be dynamically added here -->
+    </tbody>
+</table>
+
+<script>
+   // Function to display suggestions
+function displaySuggestions() {
+    const currentDate = new Date().toLocaleDateString(); // Get the current date
+    const suggestions = JSON.parse(localStorage.getItem("suggestions")) || [];
+    const suggestionsList = document.getElementById("suggestions-list");
+
+    // Clear any existing rows
+    suggestionsList.innerHTML = "";
+
+    // Filter out suggestions older than the current day
+    const todaysSuggestions = suggestions.filter(suggestion => suggestion.date === currentDate);
+
+    // Add each suggestion from today as a new row
+    todaysSuggestions.forEach(suggestion => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+            <td>${suggestion.suggestion}</td>
+        `;
+        suggestionsList.appendChild(row);
+    });
+}
+
+// Call the function to display suggestions
+displaySuggestions();
+
+</script>
 </body>
 </html>

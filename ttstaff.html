@@ -200,9 +200,37 @@
         </tbody>
       </table>
       <div class="button-container">
-         <label>Suggestions</label>
-        <input type="text">
-        <button id="save-button">Send</button>
+         <label>Suggestions</label><br>
+        
+      
+        <!-- Suggestion Box -->
+<textarea id="suggestion-box" placeholder="Write your suggestion here..."></textarea>
+<button id="send-suggestion">Send</button>
     </div>
+    <script>
+      document.getElementById("send-suggestion").addEventListener("click", function() {
+        const suggestionText = document.getElementById("suggestion-box").value;
+        const currentDate = new Date().toLocaleDateString(); // Get the current date in string format
+        
+        if (suggestionText.trim() !== "") {
+            // Get existing suggestions from localStorage (if any)
+            let suggestions = JSON.parse(localStorage.getItem("suggestions")) || [];
+    
+            // Add the new suggestion with the current date
+            suggestions.push({ suggestion: suggestionText, date: currentDate });
+    
+            // Save updated suggestions back to localStorage
+            localStorage.setItem("suggestions", JSON.stringify(suggestions));
+    
+            // Clear the suggestion box
+            document.getElementById("suggestion-box").value = "";
+    
+            alert("Suggestion sent successfully!");
+        } else {
+            alert("Please write a suggestion before sending.");
+        }
+    });
+    
+    </script>
 </body>
 </html>
