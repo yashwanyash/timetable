@@ -11,7 +11,7 @@
     <title>College_Time_Table</title>
     <style>
       body {
-        background-color: #1e293b;
+        background-color:#1e293b;
         margin: 0;
         text-align: center;
       }
@@ -19,34 +19,44 @@
       header {
         text-align: center;
         padding: 5px;
-        background-color: #0f172a;
+        background-color:#0f172a;
       }
       
       h1 {
         font-family: Arial, sans-serif;
         font-size: 48px;
         font-weight: bold;
-        color: #ffffff; 
+        color:white; 
         text-transform: uppercase;
-        text-shadow: 0 0 15px #704a45, /* First layer glow */ 
-                     0 0 30px #704a45,
-                     0 0 60px #6c4744, /* Second layer glow */ 
-                     0 0 90px #483131, /* Third layer intense glow */  
-                     0 0 120px #6c4744, 
-                     0 0 150px #704a45;
+        text-shadow: 0 0 10px #704a45, 
+             0 0 20px #6c4744,
+             0 0 40px #483131;
+      }
+
+      h2 {
+        font-family: Arial, sans-serif;
+        font-size: 48px;
+        font-weight: bold;
+        color:white; 
+        text-transform: uppercase;
+        text-shadow: 0 0 10px #704a45, 
+             0 0 20px #6c4744,
+             0 0 40px #483131;
       }
 
       section {
         margin-top: 60px;
       }
-
-    
+      
       .buttons-container {
         margin-top: 45px;
       }
       
+    
+      
+      
       .button {
-        background-color: rgb(153, 247, 228);
+        background-color:rgb(153, 247, 228);
         color: black;
         height: 100px;
         width: 200px;
@@ -54,17 +64,25 @@
         cursor: pointer;
         font-weight: bold;
         font-size: 33px;
-        border: thick solid black;
+        border: 3px solid #0f172a;
         box-shadow: 0 0 15px #704a45, /* First layer glow */
                     0 0 30px #704a45,
-                    0 0 60px #6c4744, /* Second layer glow */
-                    0 0 150px #704a45;
+                    0 0 60px #6c4744;/* Second layer glow*/
+                    
                     
       }
-
+      .button:hover {
+        transform: scale(1.05);
+        transition: 0.3s ease-in-out;
+      }
       
+      
+
       @media (max-width: 768px) {
-        h1 {
+        h1  {
+          font-size: 36px;
+        }
+        h2 {
           font-size: 36px;
         }
         
@@ -76,25 +94,52 @@
       }
 
       @media (max-width: 480px) {
-        h1 {
+        h1  {
           font-size: 28px;
         }
-        
+        h2  {
+          font-size: 28px;
+        }
         .button {
           width: 140px;
           height: 70px;
           font-size: 24px;
         }
       }
+
+      h2 {
+        animation: fadeIn 1s ease-in-out;
+      }
+      
+      @keyframes fadeIn {
+        0% { opacity: 0; transform: translateY(-20px); }
+        100% { opacity: 1; transform: translateY(0); }
+      }
+      /*
+      footer {
+        margin-top: 50px;
+        padding: 10px;
+        background-color: #0f172a;
+        color: white;
+        text-align: center;
+        font-size: 14px;
+      }
+      */
+     
       
     </style>
+    
+    
   </head>
   <body>
+
       <header>
         <h1>Seshadripuram Academy Of Business Studies</h1>
+        <p id="datetime" style="color:white; font-size: 18px;"></p>
+
       </header>
       <section>
-        <h1>Time Table</h1>
+        <h2>Time Table</h2>
       </section>
 
     <div class="buttons-container">
@@ -113,6 +158,20 @@
       <button class="button" onclick="window.location.href='login_admin.html'">
         <i style="display: block" class="fas fa-user-cog"></i> ADMIN
       </button>
-    </div>
+    </div>    
+
+    <!--<footer>
+      <p>© 2024 Seshadripuram Academy. All rights reserved.</p>
+    </footer>-->
+    <script>
+      function updateTime() {
+        const now = new Date();
+        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
+        document.getElementById("datetime").innerHTML = now.toLocaleDateString("en-US", options);
+      }
+      setInterval(updateTime, 1000);
+      updateTime(); // Run once on load
+    </script>
+    
   </body>
 </html>
